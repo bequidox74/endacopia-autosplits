@@ -1,4 +1,4 @@
-// version 4
+// version 5
 
 state("Endacopia")
 {
@@ -26,6 +26,7 @@ state("Endacopia")
 startup
 {
     vars.stage = 0;
+    settings.Add("endingA", true);
 }
 
 onReset
@@ -176,7 +177,18 @@ split
             return true;
         }
         break;
-    case 14: // gg
+    case 14: // henry (if ending A)
+        if (!settings["endingA"])
+        {
+            vars.stage++;
+            goto case 15;
+        }
+        else if (current.room != old.room && old.room == 122)
+        {
+            return current.room == 109;
+        }
+        break;
+    case 15: // gg
         if (current.credits != 0 && current.room != 62)
         {
             print("gg!");
