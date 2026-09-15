@@ -28,12 +28,13 @@ startup
 {
     Action ResetVars = () => {
         vars.stage = 0;
-        vars.currentFrame = 0;
         vars.accumulatedFrames = 0;
         vars.lastFrames = 0; // keeps track of the frame count across all re-launches of the game
         vars.running = false;
     };
     vars.ResetVars = ResetVars;
+
+    timer.OnUndoSplit += (e, a) => { vars.stage--; };
 
     settings.Add("endingA", true);
     ResetVars();
@@ -85,35 +86,35 @@ split
         }
         break;
     case 1: // mouth
-        if (current.mouthSense != 0)
+        if (old.mouthSense != current.mouthSense && current.mouthSense != 0)
         {
             print("mouth done");
             return true;
         }
         break;
     case 2: // hands
-        if (current.handsSense != 0)
+        if (old.handsSense != current.handsSense && current.handsSense != 0)
         {
             print("hands done");
             return true;
         }
         break;
     case 3: // skateboard
-        if (current.hasSkateboard != 0)
+        if (old.hasSkateboard != current.hasSkateboard && current.hasSkateboard != 0)
         {
             print("skateboard done");
             return true;
         }
         break;
     case 4: // eyes
-        if (current.eyesSense != 0)
+        if (old.eyesSense != current.eyesSense && current.eyesSense != 0)
         {
             print("eyes done");
             return true;
         }
         break;
     case 5: // telescope
-        if (current.hasTelescope != 0)
+        if (old.hasTelescope != current.hasTelescope && current.hasTelescope != 0)
         {
             // this should only trigger once because of the stage check.
             print("telescope done");
@@ -121,42 +122,42 @@ split
         }
         break;
     case 6: // VCR
-        if (current.hasVcr != 0)
+        if (old.hasVcr != current.hasVcr && current.hasVcr != 0)
         {
             print("vcr done");
             return true;
         }
         break;
     case 7: // case closed
-        if (current.ozzieDead != 0)
+        if (old.ozzieDead != current.ozzieDead && current.ozzieDead != 0)
         {
             print("case closed done");
             return true;
         }
         break;
     case 8: // map
-        if (current.hasMap != 0)
+        if (old.hasMap != current.hasMap && current.hasMap != 0)
         {
             print("map done");
             return true;
         }
         break;
     case 9: // tickets
-        if (current.hasTickets != 0)
+        if (old.hasTickets != current.hasTickets && current.hasTickets != 0)
         {
             print("tickets done");
             return true;
         }
         break;
     case 10: // wrench
-        if (current.hasWrench != 0)
+        if (old.hasWrench != current.hasWrench && current.hasWrench != 0)
         {
             print("wrench done");
             return true;
         }
         break;
     case 11: // short circuit
-        if (current.aiDead != 0)
+        if (old.aiDead != current.aiDead && current.aiDead != 0)
         {
             print("short circuit done");
             return true;
@@ -171,7 +172,7 @@ split
         }
         break;
     case 13: // cut the act
-        if (current.trapezistDead != 0)
+        if (old.trapezistDead != current.trapezistDead && current.trapezistDead != 0)
         {
             print("cut the act done");
             return true;
