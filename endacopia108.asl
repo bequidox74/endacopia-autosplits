@@ -1,4 +1,4 @@
-// version 5
+// version 6
 
 state("Endacopia")
 {
@@ -65,12 +65,6 @@ update
     {
         timer.IsGameTimePaused = false;
     }
-}
-
-reset
-{
-    if (vars.stage != 0) return false;
-    return old.room != current.room && old.room == 16 && current.room == 6;
 }
 
 split
