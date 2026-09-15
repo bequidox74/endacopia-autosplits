@@ -4,6 +4,7 @@ state("Endacopia")
 {
     uint room: 0x2F8E70;
     uint credits: 0x00333F8C;
+    uint frameCounter: 0x00333FF2;
 
     uint handsSense: 0x00325490, 0xC, 108;
     uint eyesSense: 0x00325490, 0xC, 112;
@@ -25,46 +26,51 @@ state("Endacopia")
 
 startup
 {
-    vars.stage = 0;
+    Action ResetVars = () => {
+        vars.stage = 0;
+        vars.currentFrame = 0;
+        vars.accumulatedFrames = 0;
+        vars.lastFrames = 0; // keeps track of the frame count across all re-launches of the game
+        vars.running = false;
+    };
+    vars.ResetVars = ResetVars;
+
     settings.Add("endingA", true);
+    ResetVars();
 }
 
 onReset
 {
-    vars.stage = 0;
-}
-
-init
-{
-    print("stage: " + vars.stage);
-    print("timer paused: " + timer.IsGameTimePaused);
+    vars.ResetVars();
 }
 
 start
 {
-    if (vars.stage == 0)
+    if (vars.stage == 0 && old.room != current.room && old.room == 16)
     {
-        if (old.room != current.room && old.room == 16)
-        {
-            print("starting from stage " + vars.stage + " and room " + current.room);
-            return true;
-        }
+        return true;
     }
-}
-
-onSplit
-{
-    vars.stage++;
-    print("new stage: " + vars.stage);
 }
 
 update
 {
-    // "continue" resumes the timer regardless of the current stage.
     if (old.room != current.room && old.room == 16)
     {
-        timer.IsGameTimePaused = false;
+        vars.startFrame = current.frameCounter;
+        vars.running = true;
     }
+    if (timer.CurrentPhase != TimerPhase.Running || !vars.running) return true;
+    vars.accumulatedFrames = vars.lastFrames + current.frameCounter - vars.startFrame;
+}
+
+gameTime
+{
+    return TimeSpan.FromSeconds(vars.accumulatedFrames / 40.0);
+}
+
+isLoading
+{
+    return true;
 }
 
 split
@@ -192,7 +198,13 @@ split
     }
 }
 
+onSplit
+{
+    vars.stage++;
+}
+
 exit
 {
-    timer.IsGameTimePaused = true;
+    vars.lastFrames = vars.accumulatedFrames;
+    vars.running = false;
 }
