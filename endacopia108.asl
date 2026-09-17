@@ -213,7 +213,10 @@ split
         }
         break;
     case 15: // gg
-        if (current.credits != 0 && current.room != 62)
+        if (
+            old.credits != current.credits
+            && current.credits != 0
+            && (current.room == 114 || current.room == 121))
         {
             print("gg!");
             return true;
