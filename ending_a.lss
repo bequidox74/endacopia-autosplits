@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Run version="1.7.0">
+  <GameIcon><![CDATA[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]]></GameIcon>
+  <GameName>Endacopia</GameName>
+  <CategoryName>Any% (Ending A)</CategoryName>
+  <LayoutPath>
+  </LayoutPath>
+  <Metadata>
+    <Run id="" />
+    <Platform usesEmulator="False">
+    </Platform>
+    <Region>
+    </Region>
+    <Variables />
+    <CustomVariables />
+  </Metadata>
+  <Offset>00:00:00</Offset>
+  <AttemptCount>0</AttemptCount>
+  <AttemptHistory />
+  <Segments>
+    <Segment>
+      <Name>Prologue</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Mouth</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Hands</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Skateboard</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Eyes</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Telescope</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>VHS</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Case Closed</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Map</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Tickets</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Wrench</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Short Circuit</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Saw</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Cut the Act</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>Henry</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+    <Segment>
+      <Name>GG</Name>
+      <Icon />
+      <SplitTimes>
+        <SplitTime name="Personal Best" />
+      </SplitTimes>
+      <BestSegmentTime />
+      <SegmentHistory />
+    </Segment>
+  </Segments>
+  <AutoSplitterSettings />
+</Run>
