@@ -1,4 +1,4 @@
-// version 7
+// version 8
 
 state("Endacopia")
 {
@@ -37,7 +37,8 @@ startup
 
     timer.OnUndoSplit += (e, a) => { vars.stage--; };
 
-    settings.Add("endingA", true);
+    settings.Add("endingA", true, "Ending A");
+    settings.Add("internalTime", false, "Use Internal Game Time");
     ResetVars();
 }
 
@@ -48,7 +49,7 @@ onReset
 
 start
 {
-    if (vars.stage == 0 && old.room != current.room && old.room == 16)
+    if (vars.running)
     {
         return true;
     }
@@ -57,6 +58,7 @@ start
 init
 {
     vars.accumulatedFrames = vars.lastFrames;
+    vars.running = false;
 }
 
 update
@@ -67,6 +69,7 @@ update
         // this frame counter is saved as part of the game state,
         // so we should skip normal delta logic if we're loading.
         vars.skipDelta = true;
+        timer.IsGameTimePaused = false;
     }
     if (timer.CurrentPhase != TimerPhase.Running || !vars.running || vars.skipDelta)
     {
@@ -85,12 +88,13 @@ update
 
 gameTime
 {
+    if (!settings["internalTime"]) return null;
     return TimeSpan.FromSeconds(vars.accumulatedFrames / 40.0);
 }
 
 isLoading
 {
-    return true;
+    return settings["internalTime"] || !vars.running;
 }
 
 split
@@ -227,4 +231,5 @@ exit
 {
     vars.lastFrames = vars.accumulatedFrames;
     vars.running = false;
+    timer.IsGameTimePaused = true;
 }
