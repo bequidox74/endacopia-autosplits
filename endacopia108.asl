@@ -1,4 +1,4 @@
-// version 6
+// version 7
 
 state("Endacopia")
 {
@@ -31,6 +31,7 @@ startup
         vars.accumulatedFrames = 0;
         vars.lastFrames = 0; // keeps track of the frame count across all re-launches of the game
         vars.running = false;
+        vars.skipDelta = false;
     };
     vars.ResetVars = ResetVars;
 
@@ -53,15 +54,33 @@ start
     }
 }
 
+init
+{
+    vars.accumulatedFrames = vars.lastFrames;
+}
+
 update
 {
     if (old.room != current.room && old.room == 16)
     {
-        vars.startFrame = current.frameCounter;
         vars.running = true;
+        // this frame counter is saved as part of the game state,
+        // so we should skip normal delta logic if we're loading.
+        vars.skipDelta = true;
     }
-    if (timer.CurrentPhase != TimerPhase.Running || !vars.running) return true;
-    vars.accumulatedFrames = vars.lastFrames + current.frameCounter - vars.startFrame;
+    if (timer.CurrentPhase != TimerPhase.Running || !vars.running || vars.skipDelta)
+    {
+        vars.skipDelta = false;
+        return true;
+    }
+    
+    int diff = (int)current.frameCounter - (int)old.frameCounter;
+    if (diff < 0)
+    {
+        diff += 65536;
+    }
+    vars.accumulatedFrames += diff;
+    vars.skipDelta = false;
 }
 
 gameTime
